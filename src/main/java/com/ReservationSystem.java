@@ -1,40 +1,50 @@
 package com;
 
 public class ReservationSystem {
+	private String name;
+	private int weekdayHotelRate;
+	private int weekendHotelRate;
+
+	/**
+	 * 1. Created a constructor
+	 */
 	
-		private String name;
-		private int price;
-
-		/**
-		 * 
-		 * @param name
-		 * @param price
-		 */
-		public ReservationSystem(String name, int price) {
-			super();
-			this.name = name;
-			this.price = price;
-		}
-
-		public String getName() {
-			return name;
-		}
-
-		public void setName(String name) {
-			this.name = name;
-		}
-
-		public int getPrice() {
-			return price;
-		}
-
-		public void setPrice(int price) {
-			this.price = price;
-		}
-
-		@Override
-		public String toString() {
-			return "\nHotelDetails [name=" + name + ", price=" + price + "]";
-		}
-
+	public ReservationSystem(String name, int weekdayHotelRate, int weekendHotelRate) {
+		super();
+		this.name = name;
+		this.weekdayHotelRate = weekdayHotelRate;
+		this.weekendHotelRate = weekendHotelRate;
 	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public int getWeekdayHotelRate() {
+		return weekdayHotelRate;
+	}
+
+	public void setWeekdayHotelRate(int weekdayHotelRate) {
+		this.weekdayHotelRate = weekdayHotelRate;
+	}
+
+	public int getWeekendHotelRate() {
+		return weekendHotelRate;
+	}
+
+	public void setWeekendHotelRate(int weekendHotelRate) {
+		this.weekendHotelRate = weekendHotelRate;
+	}
+
+	@Override
+	public String toString() {
+		return "\nHotelDetails2 [name=" + name + ", weekdayHotelRate=" + weekdayHotelRate + ", weekendHotelRate="
+				+ weekendHotelRate + "]";
+	}
+
+
+}

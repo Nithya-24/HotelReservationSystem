@@ -16,13 +16,13 @@ public class Main {
 			for (int i = 1; i <= 3; i++) {
 				System.out.println("Enter the hotel name : ");
 				String hotelName = sc.next();
-				System.out.println("Enter the Rates : ");
-				int rates = sc.nextInt();
-				sc.close();
-				HotelReservation.addHotel1(hotelName, rates);
+				System.out.println("Enter the Week-Days Rates : ");
+				int weekDayRates = sc.nextInt();
+				System.out.println("Enter the Week-End Rates : ");
+				int weekEndRates = sc.nextInt();
+				HotelReservation.addHotel1(hotelName, weekDayRates,weekEndRates);
 			}
 			HotelReservation.showHotel();
-
 			/**
 			 *  To find Cheapest rate on given date intervals
 			 */
