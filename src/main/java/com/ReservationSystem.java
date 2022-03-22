@@ -2,53 +2,39 @@ package com;
 
 public class ReservationSystem {
 	
-	/**
-	 * hotelName for Name of the Hotel
-	 * Rating for Rate of Hotel
-	 * Customer Rating 
-	 */
-	String hotelName;
-	int rating;
-	double regularCustomerRate;
-	double weekendRegularCustomerRate;
-	
-	public ReservationSystem(String hotelName, int rating, double regularCustomerRate, double weekendRegularCustomerRate) {
-		this.hotelName = hotelName;
-		this.rating = rating;
-		this.regularCustomerRate = regularCustomerRate;
-		this.weekendRegularCustomerRate = weekendRegularCustomerRate;
-	}
-	
-	/**
-	 * getting and setting Names of Hotel and Rate and to set to corresponding names
-	 * @return
-	 */
-	public String getHotelName() {
-		return hotelName;
-	}
-	public void setHotelName(String hotelName) {
-		this.hotelName = hotelName;
-	}
+		private String name;
+		private int price;
 
-	public int getRate() {
-		return rating;
-	}
+		/**
+		 * 
+		 * @param name
+		 * @param price
+		 */
+		public ReservationSystem(String name, int price) {
+			super();
+			this.name = name;
+			this.price = price;
+		}
 
-	public void setRate(int rate) {
-		this.rating = rate;
-	}
+		public String getName() {
+			return name;
+		}
 
-	public double getRegularCustomerRate() {
-		return regularCustomerRate;
-	}
+		public void setName(String name) {
+			this.name = name;
+		}
 
-	public void setRegularCustomerRate(double regularCustomerRate) {
-		this.regularCustomerRate = regularCustomerRate;
-	}
-	
-	public String toString() {
-		return "Hotel [hotelName=" + hotelName + ", rating=" + rating + ", regularCustomerRate=" + regularCustomerRate
-				+ ", weekendRegularCustomerRate=" + weekendRegularCustomerRate +"]";
-	}
+		public int getPrice() {
+			return price;
+		}
 
-}
+		public void setPrice(int price) {
+			this.price = price;
+		}
+
+		@Override
+		public String toString() {
+			return "\nHotelDetails [name=" + name + ", price=" + price + "]";
+		}
+
+	}
