@@ -1,6 +1,7 @@
 package com;
 import java.time.LocalDate;
 import java.time.Month;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -21,7 +22,7 @@ public class Main {
 		
 		LocalDate startDate = LocalDate.of(2020, Month.SEPTEMBER, 10);    
 		LocalDate endDate = LocalDate.of(2020, Month.SEPTEMBER, 11);    
-		String reservationSystem = hotelReservation.getCheapestHotel(startDate, endDate);
+		ArrayList<ReservationSystem> reservationSystem = hotelReservation.getCheapestHotel(startDate, endDate);
 		System.out.println("The cheapest hotel is : " + reservationSystem);
 }
 }
