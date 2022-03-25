@@ -2,6 +2,7 @@ package com;
 
 import java.time.LocalDate;
 import java.time.Month;
+import java.util.ArrayList;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -63,7 +64,7 @@ public class HotelReservationTest {
 		hotelReservation.addHotel("Bridgewood", 4, 160, 50);
 		LocalDate startDate = LocalDate.of(2020, Month.SEPTEMBER, 10);    
 		LocalDate endDate = LocalDate.of(2020, Month.SEPTEMBER, 11);    
-		String reservationSystem = hotelReservation.getCheapestHotel(startDate, endDate);
+		ArrayList<ReservationSystem> reservationSystem = hotelReservation.getCheapestHotel(startDate, endDate);
 		Assert.assertEquals("Lakewood", reservationSystem);
 	}
 }
