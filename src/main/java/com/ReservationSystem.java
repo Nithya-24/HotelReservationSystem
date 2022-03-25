@@ -5,6 +5,8 @@ public class ReservationSystem {
 	private int rating;
 	private double weekdayRegularCustomerCost;
 	private double weekendRegularCustomerCost;
+	private double weekdayRewardCustomerCost;
+	private double weekendRewardCustomerCost;
 	
 	/**
 	 *  Parameterized Constructor
@@ -52,11 +54,27 @@ public class ReservationSystem {
 	public void setWeekendRegularCustomerCost(double weekendRegularCustomerCost) {
 		this.weekendRegularCustomerCost = weekendRegularCustomerCost;
 	}
+	
+	public double getWeekendRewardCustomerCost() {
+		return weekendRewardCustomerCost;
+	}
+	
+	public void setWeekendRewardCustomerCost(double weekdayRewardCustomerCost) {
+		this.weekendRewardCustomerCost = weekdayRewardCustomerCost;
+	}
+	
+	public double getWeekdayRewardCustomerCost() {
+		return weekendRewardCustomerCost;
+	}
+	
+	public void setWeekdayRewardCustomerCost(double weekdayRewardCustomerCost) {
+		this.weekendRewardCustomerCost = weekdayRewardCustomerCost;
+	}
 
 	@Override
 	public String toString() {
-		return " \n Hotel [hotelName=" + hotelName + ", rating=" + rating + ", weekdayRegularCustomerCost="
-				+ weekdayRegularCustomerCost + ", weekendRegularCustomerCost=" + weekendRegularCustomerCost + "]";
+		return " \n Hotel: hotelName=" + hotelName + ", rating=" + rating + ", weekdayRegularCustomerCost="
+				+ weekdayRegularCustomerCost + ", weekendRegularCustomerCost=" + weekendRegularCustomerCost + "Reward Customer WeekDay Cost=" + weekendRewardCustomerCost + "\n";
 	}
 	
 	

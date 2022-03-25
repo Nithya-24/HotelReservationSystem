@@ -25,12 +25,14 @@ public class HotelReservation {
 	 * @return
 	 */
 	
-	public void addHotel(String hotelName, int rating, double weekdayRegularCustomerCost, double weekendRegularCustomerCost) {
+	public void addHotel(String hotelName, int rating, double weekdayRegularCustomerCost, double weekendRegularCustomerCost, double weekdayRewardCustomerCost, double weekendRewardCustomerCost) {
 		ReservationSystem reservationSystem = new ReservationSystem();
 		reservationSystem.setHotelName(hotelName);
 		reservationSystem.setRating(rating);
 		reservationSystem.setWeekdayRegularCustomerCost(weekdayRegularCustomerCost);
 		reservationSystem.setWeekendRegularCustomerCost(weekendRegularCustomerCost);
+		reservationSystem.setWeekdayRewardCustomerCost(weekdayRewardCustomerCost);
+		reservationSystem.setWeekendRewardCustomerCost(weekendRewardCustomerCost);
 			hotelList.add(reservationSystem);
 		}
 	
