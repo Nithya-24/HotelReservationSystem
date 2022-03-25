@@ -1,18 +1,19 @@
 package com;
 
-import java.time.*;
-import java.time.temporal.*;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.Optional;
-import java.util.Scanner;
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoField;
+import java.time.temporal.ChronoUnit;
+import java.util.*;
 import java.util.stream.Collectors;
-
 
 public class HotelReservation {
 	
 	ArrayList<ReservationSystem> hotelList = new ArrayList<ReservationSystem>();
-	HotelReservation hotelReservation = new HotelReservation();
+//	HotelReservation hotelReservation = new HotelReservation();
+//	ReservationSystem reservationSystem = new ReservationSystem();
+//	
      
 	/**
 	 * In this method we will add the hotel to the ArrayList
@@ -53,7 +54,7 @@ public class HotelReservation {
 	
 	/**
 	 * Method to find the cheapest hotel. 
-	 * Then we are comparing the regular cost of the hotel and finding the cheapest hotel
+	 * Then comparing the regular cost of the hotel and finding the cheapest hotel
 	 * We are using the min method to get the list of minimum cost.
 	 * @param startDate 
 	 * @param endDate
@@ -85,8 +86,9 @@ public class HotelReservation {
 				.orElse(Double.MAX_VALUE);
 		
 		ArrayList<ReservationSystem> cheapestHotel = hotelList.stream()
-				.filter(hotel -> (hotel.getWeekendRegularCustomerCost()*weekendsNumber + hotel.getWeekdayRegularCustomerCost()*weekdaysNumber) == cheapestPrice)
+				.filter(reservationSystem -> (reservationSystem.getWeekendRegularCustomerCost()*weekendsNumber + reservationSystem.getWeekendRegularCustomerCost()*weekdaysNumber) == cheapestPrice)
 				.collect(Collectors.toCollection(ArrayList::new));
+		
 		
         if (cheapestPrice != Double.MAX_VALUE) {
         	

@@ -55,8 +55,8 @@ public class ReservationSystem {
 
 	@Override
 	public String toString() {
-		return " \n Hotel: hotelName=" + hotelName + "\n rating=" + rating + "/n weekdayRegularCustomerCost="
-				+ weekdayRegularCustomerCost + "\n weekendRegularCustomerCost=" + weekendRegularCustomerCost + "\n";
+		return " \n Hotel [hotelName=" + hotelName + ", rating=" + rating + ", weekdayRegularCustomerCost="
+				+ weekdayRegularCustomerCost + ", weekendRegularCustomerCost=" + weekendRegularCustomerCost + "]";
 	}
 	
 	
