@@ -1,50 +1,64 @@
 package com;
 
 public class ReservationSystem {
-	private String name;
-	private int weekdayHotelRate;
-	private int weekendHotelRate;
-
-	/**
-	 * 1. Created a constructor
-	 */
+	private String hotelName;
+	private int rating;
+	private double weekdayRegularCustomerCost;
+	private double weekendRegularCustomerCost;
 	
-	public ReservationSystem(String name, int weekdayHotelRate, int weekendHotelRate) {
-		super();
-		this.name = name;
-		this.weekdayHotelRate = weekdayHotelRate;
-		this.weekendHotelRate = weekendHotelRate;
+	/**
+	 *  Parameterized Constructor
+	 *  pass the details of the regular customer
+	 *  passing the weekDay and weekend rates.
+	 */
+	public ReservationSystem(String hotelName, int rating, double weekdayRegularCustomerCost, double weekendRegularCustomerCost) {
+		this.hotelName = hotelName;
+		this.rating = rating;
+		this.weekdayRegularCustomerCost = weekdayRegularCustomerCost;
+		this.weekendRegularCustomerCost = weekendRegularCustomerCost;
+	}
+	
+	public ReservationSystem() {
+	}
+	
+	public String getHotelName() {
+		return hotelName;
 	}
 
-	public String getName() {
-		return name;
+	public void setHotelName(String hotelName) {
+		this.hotelName = hotelName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public int getRating() {
+		return rating;
 	}
 
-	public int getWeekdayHotelRate() {
-		return weekdayHotelRate;
+	public void setRating(int rating) {
+		this.rating = rating;
 	}
-
-	public void setWeekdayHotelRate(int weekdayHotelRate) {
-		this.weekdayHotelRate = weekdayHotelRate;
+	
+	public double getWeekdayRegularCustomerCost() {
+		return weekdayRegularCustomerCost;
 	}
-
-	public int getWeekendHotelRate() {
-		return weekendHotelRate;
+	
+	public void setWeekdayRegularCustomerCost(double weekdayRegularCustomerCost) {
+		this.weekdayRegularCustomerCost = weekdayRegularCustomerCost;
 	}
-
-	public void setWeekendHotelRate(int weekendHotelRate) {
-		this.weekendHotelRate = weekendHotelRate;
+	
+	public double getWeekendRegularCustomerCost() {
+		return weekendRegularCustomerCost;
+	}
+	
+	public void setWeekendRegularCustomerCost(double weekendRegularCustomerCost) {
+		this.weekendRegularCustomerCost = weekendRegularCustomerCost;
 	}
 
 	@Override
 	public String toString() {
-		return "\nHotelDetails2 [name=" + name + ", weekdayHotelRate=" + weekdayHotelRate + ", weekendHotelRate="
-				+ weekendHotelRate + "]";
+		return " \n Hotel: hotelName=" + hotelName + "\n rating=" + rating + "/n weekdayRegularCustomerCost="
+				+ weekdayRegularCustomerCost + "\n weekendRegularCustomerCost=" + weekendRegularCustomerCost + "\n";
 	}
-
+	
+	
 
 }

@@ -1,72 +1,99 @@
 package com;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.temporal.ChronoUnit;
+import java.time.*;
+import java.time.temporal.*;
 import java.util.ArrayList;
-import java.util.Locale;
-import java.util.Map;
+import java.util.Comparator;
+import java.util.Optional;
+import java.util.Scanner;
 import java.util.stream.Collectors;
+
 
 public class HotelReservation {
 	
+	ArrayList<ReservationSystem> hotelList = new ArrayList<ReservationSystem>();
+	HotelReservation hotelReservation = new HotelReservation();
+     
+	/**
+	 * In this method we will add the hotel to the ArrayList
+	 * @param hotelName - we will pass the hotel name
+	 * @param rating - we will pass the rating of the hotel
+	 * @param weekDayRateRegular - We will pass the rate of week day for the regular customer
+	 * @param weekendRateRegular -  we will pass the weekend rate for the regular customer
+	 * @return
+	 */
+	
+	public void addHotel(String hotelName, int rating, double weekdayRegularCustomerCost, double weekendRegularCustomerCost) {
+		ReservationSystem reservationSystem = new ReservationSystem();
+		reservationSystem.setHotelName(hotelName);
+		reservationSystem.setRating(rating);
+		reservationSystem.setWeekdayRegularCustomerCost(weekdayRegularCustomerCost);
+		reservationSystem.setWeekendRegularCustomerCost(weekendRegularCustomerCost);
+			hotelList.add(reservationSystem);
+		}
 	
 	/**
-	 * Created an Array List
+	 *  To display the hotel name and the details
 	 */
-	public static ArrayList<ReservationSystem> hotelList = new ArrayList<>();
-
-	//getting hotel details into temporary object and adding into the array list
-	public static void addHotel(String name, int weekdayRate, int weekendRate) {
-		ReservationSystem temporary = new ReservationSystem(name, weekdayRate, weekendRate);
-		hotelList.add(temporary);
+	public void displayHotel() {
+		System.out.println(hotelList);
+		
 	}
-
-	//getting size of an array list for testing purposes
-	public static int countNoOfHotels() {
+	public int getHotelListSize() {
 		return hotelList.size();
 	}
-
-	public static ArrayList<ReservationSystem> getHotelList() {
+	
+	public void printHotelList() {
+		System.out.println(hotelList);
+	}
+	
+	public ArrayList<ReservationSystem> getHotelList(){
 		return hotelList;
 	}
-
-	/*
-	 *  UC1
-	 *  2. Created a method to add the details of hotel
-	 */
-	public static void addHotel1(String hotelName, int weekDayRates, int weekEndRates) {
-		ReservationSystem list = new ReservationSystem(hotelName, weekDayRates, weekEndRates);
-		hotelList.add(list);
-	}
-
-	/*
-	 * 3. Created a method to display list
-	 */
-	public static void showHotel() {
-		System.out.println("\n List of Hotels " + hotelList);
-	}
-
+	
 	/**
-	 * 
-	 *  4. Created a method to find the Cheapest rate hotel in given duration
+	 * Method to find the cheapest hotel. 
+	 * Then we are comparing the regular cost of the hotel and finding the cheapest hotel
+	 * We are using the min method to get the list of minimum cost.
+	 * @param startDate 
+	 * @param endDate
+	 * @return
 	 */
-	public static String findCheapestHotel(String startDate, String endDate) {
-		DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("dd-MM-yyyy"); //Created a pattern of date
-		LocalDate startDateInput = LocalDate.parse(startDate, dateFormat);//Getting Start Date from user
-		LocalDate endDateInput = LocalDate.parse(endDate, dateFormat);//Getting End Date from user
-		int noOfDaysToBook = (int) ChronoUnit.DAYS.between(startDateInput, endDateInput) + 1;//Calculating the no. of days
-		//Streaming the list of @Hotels and their @Rate and calculating the total rate of durations
-		Map<String, Integer> hotelNameToTotalCostMap = hotelList.stream().collect(Collectors.toMap(hotel -> hotel.getName(), hotel -> hotel.getWeekdayHotelRate() * noOfDaysToBook));
-		//Comparing the rates of hotels to find the cheapest rate
-		String cheapestHotelName = hotelNameToTotalCostMap.keySet().stream()
-				.min((hotel1, hotel2) -> hotelNameToTotalCostMap.get(hotel1) - hotelNameToTotalCostMap.get(hotel2))
-				.orElse(null);
-		//Storing Cheapest Hotel info the variable
-		String cheapestHotelInfo = cheapestHotelName + ", Total Cost: $"
-				+ hotelNameToTotalCostMap.get(cheapestHotelName);
-		System.out.println(cheapestHotelInfo);
-		return cheapestHotelInfo;
+	public String getCheapestHotel(LocalDate startDate, LocalDate endDate) {
 
+		int numberOfDays = (int) ChronoUnit.DAYS.between(startDate, endDate);
+        int weekends = 0;
+        
+		while (startDate.compareTo(endDate) != 0) {
+            switch (DayOfWeek.of(startDate.get(ChronoField.DAY_OF_WEEK))) {
+                case SATURDAY:
+                    ++weekends;
+                    break;
+                case SUNDAY:
+                    ++weekends;
+                    break;
+            }
+            startDate = startDate.plusDays(1);
+        }
+		
+		final int weekdaysNumber = numberOfDays - weekends;
+		final int weekendsNumber = weekends;
+		
+		final double cheapestPrice = hotelList.stream()
+				.mapToDouble(hotel -> ((hotel.getWeekendRegularCustomerCost()*weekendsNumber) + hotel.getWeekdayRegularCustomerCost()*weekdaysNumber))
+				.min()
+				.orElse(Double.MAX_VALUE);
+		
+		ArrayList<ReservationSystem> cheapestHotel = hotelList.stream()
+				.filter(hotel -> (hotel.getWeekendRegularCustomerCost()*weekendsNumber + hotel.getWeekdayRegularCustomerCost()*weekdaysNumber) == cheapestPrice)
+				.collect(Collectors.toCollection(ArrayList::new));
+		
+        if (cheapestPrice != Double.MAX_VALUE) {
+        	
+        	System.out.println("Cheapest Hotel : \n" + cheapestHotel.get(0).getHotelName() + ", Total Rates: " + cheapestPrice);
+        	return cheapestHotel.get(0).getHotelName();
+        }
+        return null;
 	}
+
 }

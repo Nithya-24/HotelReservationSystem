@@ -1,35 +1,27 @@
 package com;
-import java.util.*;
+import java.time.LocalDate;
+import java.time.Month;
+import java.util.Scanner;
 
+/**
+ * This is a main class.
+ * In this we are adding and displaying the hotel details.
+ *
+ */
 public class Main {
-	
-
 	public static void main(String[] args) {
+		//System.out.println("Welcome to Hotel Reservation System");
+		HotelReservation hotelReservation = new HotelReservation();
+		hotelReservation.addHotel("Lakewood", 3, 110, 90);
+		hotelReservation.addHotel("Bridgewood", 4, 150, 50);
+		hotelReservation.addHotel("Ridgewood", 5, 220, 150);
 		
-		/**
-		 * Main method to pass the details of hotels
-		 */
-	
-			Scanner sc = new Scanner(System.in);
-		//	System.out.println("Welcome to Hotel Reservation");
-
-			for (int i = 1; i <= 3; i++) {
-				System.out.println("Enter the hotel name : ");
-				String hotelName = sc.next();
-				System.out.println("Enter the Week-Days Rates : ");
-				int weekDayRates = sc.nextInt();
-				System.out.println("Enter the Week-End Rates : ");
-				int weekEndRates = sc.nextInt();
-				HotelReservation.addHotel1(hotelName, weekDayRates,weekEndRates);
-			}
-			HotelReservation.showHotel();
-			/**
-			 *  To find Cheapest rate on given date intervals
-			 */
-			System.out.println("Enter the start date (DD-MMM-YYYY)");
-			String sd = sc.next();
-			System.out.println("Enter the end date (DD-MMM-YYYY)");
-			String ed = sc.next();
-			HotelReservation.findCheapestHotel(sd, ed);
-		}
-	}
+		hotelReservation.displayHotel();
+		
+		
+		LocalDate startDate = LocalDate.of(2020, Month.SEPTEMBER, 10);    
+		LocalDate endDate = LocalDate.of(2020, Month.SEPTEMBER, 11);    
+		String reservationSystem = hotelReservation.getCheapestHotel(startDate, endDate);
+		System.out.println("The cheapest hotel is : " + reservationSystem);
+}
+}
